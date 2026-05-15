@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0" />
+
+    <title>Solar RA</title>
+</head>
+
+<body>
+
+    <!-- CANVAS -->
+    <canvas id="renderCanvas"></canvas>
+
+    <!-- CONTROLES -->
+
+    <div class="controls">
+
+  <button id="minusBtn">-</button>
+
+  <span id="speedValue">1.0x</span>
+
+  <button id="plusBtn">+</button>
+
+</div>
+
+    <!-- MODAL -->
+    <div id="planetModal"
+         class="modal">
+
+        <div class="modal-content">
+
+            <span id="closeModal"
+                  class="close">
+
+                ×
+
+            </span>
+
+            <div class="bg-image">
+
+                <img id="planetImage"
+                     src=""
+                     alt="Planet Image">
+
+            </div>
+
+            <h2 id="planetName"></h2>
+
+            <p id="planetDescription"></p>
+
+        </div>
+
+    </div>
+
+    <!-- MAIN -->
+    <script type="module"
+            src="/src/main.js">
+    </script>
+
+</body>
+
+</html>
