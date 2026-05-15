@@ -1,8 +1,10 @@
 import * as BABYLON from "@babylonjs/core";
 
+
 export const planetData = [
   {
     name: "Mercury",
+    image: "/images/Mercury.png",
 
     size: 1,
 
@@ -17,6 +19,7 @@ export const planetData = [
 
   {
     name: "Venus",
+    image: "/images/Venus.png",
 
     size: 1.5,
 
@@ -31,6 +34,7 @@ export const planetData = [
 
   {
     name: "Earth",
+    image: "/images/Earth.png",
 
     size: 1.8,
 
@@ -45,6 +49,7 @@ export const planetData = [
 
   {
     name: "Mars",
+    image: "/images/Mars.png",
 
     size: 1.4,
 
@@ -59,6 +64,7 @@ export const planetData = [
 
   {
     name: "Jupiter",
+    image: "/images/Jupiter.png",
 
     size: 4,
 
@@ -73,6 +79,7 @@ export const planetData = [
 
   {
     name: "Saturn",
+    image: "/images/Saturn.png",
 
     size: 3.5,
 
@@ -87,6 +94,7 @@ export const planetData = [
 
   {
     name: "Uranus",
+    image: "/images/Uranus.png",
 
     size: 3,
 
@@ -101,6 +109,7 @@ export const planetData = [
 
   {
     name: "Neptune",
+    image: "/images/Neptune.png",
 
     size: 2.8,
 
