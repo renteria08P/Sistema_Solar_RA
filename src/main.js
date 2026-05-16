@@ -5,34 +5,66 @@ import * as BABYLON from "@babylonjs/core";
 import { createScene } from "./scene/createScene";
 import { setupModal } from "./ui/modal";
 import { setupControls } from "./ui/controls";
+import { setupPlanetEditor } from "./ui/planetEditor";
 
 // ================= DOM READY =================
 window.addEventListener("DOMContentLoaded", () => {
-  // CANVAS
-  const canvas = document.getElementById("renderCanvas");
 
-  // ENGINE
-  const engine = new BABYLON.Engine(canvas, true);
+  // ================= CANVAS =================
+  const canvas =
+    document.getElementById("renderCanvas");
 
-  // SPEED STATE
+  // ================= ENGINE =================
+  const engine =
+    new BABYLON.Engine(canvas, true);
+
+  // ================= SPEED STATE =================
   const speedState = {
     value: 1,
   };
 
-  // SCENE
-  const scene = createScene(engine, canvas, speedState);
+  // ================= SCENE =================
+  const {
+    scene,
+    planets
+  } = createScene(
+    engine,
+    canvas,
+    speedState
+  );
 
-  // UI
+  // ================= UI =================
   setupModal();
-  setupControls(speedState);
 
-  // RENDER LOOP
+  setupControls(
+    speedState,
+    planets
+  );
+
+  // ================= PLANET EDITOR =================
+  const editor =
+    setupPlanetEditor();
+
+  // escuchar selección
+  window.addEventListener(
+    "planetSelected",
+    (event) => {
+
+      editor.updateEditor(
+        event.detail
+      );
+
+    }
+  );
+
+  // ================= RENDER LOOP =================
   engine.runRenderLoop(() => {
     scene.render();
   });
 
-  // RESIZE
+  // ================= RESIZE =================
   window.addEventListener("resize", () => {
     engine.resize();
   });
+
 });

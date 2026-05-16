@@ -57,6 +57,105 @@ body {
     color: #00e5ff;
 }
 
+/* ================= MASS CONTROL ================= */
+
+.mass-control {
+    position: absolute;
+
+    top: 90px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 240px;
+
+    padding: 14px 18px;
+
+    border-radius: 14px;
+
+    background: rgba(0, 0, 0, 0.75);
+
+    color: white;
+
+    z-index: 100;
+
+    backdrop-filter: blur(8px);
+
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.mass-control label {
+    display: block;
+
+    margin-bottom: 10px;
+
+    font-size: 14px;
+
+    color: #00e5ff;
+}
+
+/* ================= PLANET EDITOR ================= */
+
+.planet-editor {
+
+    position: absolute;
+
+    right: 20px;
+    top: 20px;
+
+    width: 260px;
+
+    padding: 20px;
+
+    border-radius: 16px;
+
+    background: rgba(0,0,0,0.75);
+
+    backdrop-filter: blur(10px);
+
+    color: white;
+
+    z-index: 150;
+
+    display: none;
+}
+
+.editor-group {
+
+    margin-top: 20px;
+}
+
+.editor-group label {
+
+    display: block;
+
+    margin-bottom: 10px;
+}
+
+#planetMass {
+
+    width: 100%;
+}
+
+#planetMassValue {
+
+    display: block;
+
+    margin-top: 10px;
+
+    color: #00e5ff;
+
+    font-weight: bold;
+}
+
+/* ================= SLIDER ================= */
+
+#earthMass {
+    width: 100%;
+
+    cursor: pointer;
+}
+
 /* ================= IMAGEN PLANETA ================= */
 
 .bg-image {

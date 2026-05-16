@@ -1,28 +1,43 @@
+
 import * as BABYLON from "@babylonjs/core";
 
 import { planetData } from "./planetData";
 import { applyGravity } from "../physics/gravity";
 import { showPlanetModal } from "../ui/modal";
 
-export function createPlanets(scene, sun, speedState) {
+export function createPlanets(
+  scene,
+  sun,
+  speedState
+) {
+
   const planets = [];
 
-  // SUN BODY (para física)
+  // ================= SUN BODY =================
   const sunBody = {
     mesh: sun,
+
     mass: 10000,
-    velocity: new BABYLON.Vector3(0, 0, 0),
+
+    velocity:
+      new BABYLON.Vector3(0, 0, 0),
   };
 
-  // CREAR PLANETAS
+  // ================= CREATE PLANETS =================
   planetData.forEach((data) => {
-    const planet = BABYLON.MeshBuilder.CreateSphere(
-      data.name,
-      { diameter: data.size },
-      scene,
-    );
 
-    const material = new BABYLON.StandardMaterial(
+    // PLANET MESH
+    const planet =
+      BABYLON.MeshBuilder.CreateSphere(
+        data.name,
+        {
+          diameter: data.size
+        },
+        scene,
+      );
+
+
+      const material = new BABYLON.StandardMaterial(
       data.name + "Material",
       scene,
     );
@@ -30,39 +45,107 @@ export function createPlanets(scene, sun, speedState) {
     material.diffuseColor = data.color;
     planet.material = material;
 
-    // posición inicial en órbita
-    planet.position.x = data.distance;
+    // INITIAL POSITION
+    planet.position.x =
+      data.distance;
 
-    const orbitalSpeed = Math.sqrt(sunBody.mass / data.distance) * 0.03;
+    // INITIAL SPEED
+    const orbitalSpeed =
+      data.speed;
 
+    // PLANET OBJECT
     const planetObject = {
+
       mesh: planet,
-      mass: data.size * 10,
-      velocity: new BABYLON.Vector3(0, 0, orbitalSpeed),
+
+      mass: data.mass,
+
+      velocity:
+        new BABYLON.Vector3(
+          0,
+          0,
+          orbitalSpeed
+        ),
+
+      angle: data.angle,
+
       name: data.name,
-      description: data.description,
+
+      description:
+        data.description,
+
     };
 
     planets.push(planetObject);
 
-    // CLICK EVENT
-    planet.actionManager = new BABYLON.ActionManager(scene);
+    // ================= CLICK EVENT =================
+    planet.actionManager =
+      new BABYLON.ActionManager(
+        scene
+      );
 
     planet.actionManager.registerAction(
-      new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPickTrigger, () => {
-        showPlanetModal(planetObject);
-      }),
+
+      new BABYLON.ExecuteCodeAction(
+
+        BABYLON.ActionManager.OnPickTrigger,
+
+        () => {
+
+          // OPEN MODAL
+          showPlanetModal(
+            planetObject
+          );
+
+          // OPEN EDITOR
+          window.dispatchEvent(
+
+            new CustomEvent(
+              "planetSelected",
+              {
+                detail: planetObject
+              }
+            )
+
+          );
+
+        },
+
+      ),
+
     );
+
   });
 
-  // ANIMACIÓN (loop principal)
-  scene.onBeforeRenderObservable.add(() => {
-    const speed = speedState?.value ?? 1;
+  // ================= MAIN LOOP =================
+  scene.onBeforeRenderObservable.add(
+    () => {
 
-    planets.forEach((planet) => {
-      applyGravity(planet, sunBody);
+      const speed =
+        speedState?.value ?? 1;
 
-      planet.mesh.position.addInPlace(planet.velocity.scale(speed));
-    });
-  });
+      planets.forEach((planet) => {
+
+        applyGravity(
+          planet,
+          sunBody
+        );
+
+        planet.mesh.position.addInPlace(
+
+          planet.velocity.scale(
+            speed
+          )
+
+        );
+
+      });
+
+    }
+  );
+
+  // ================= RETURN =================
+  return planets;
+
 }
+
