@@ -15,24 +15,20 @@ body {
 }
 
 /* ================= CONTROLES ================= */
-
 .controls {
     position: absolute;
+    right: 20px;
     top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-
     display: flex;
     align-items: center;
     gap: 10px;
-
-    background: rgba(0, 0, 0, 0.7);
-    padding: 10px 20px;
-    border-radius: 12px;
-
+    background: rgba(0, 0, 0, 0.75);
+    padding: 12px 18px;
+    border-radius: 14px;
     z-index: 100;
-
-    color: white; 
+    color: white;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.1);
 }
 
 .controls button {
@@ -101,7 +97,7 @@ body {
     position: absolute;
 
     right: 20px;
-    top: 20px;
+    top: 80px;
 
     width: 260px;
 
@@ -115,7 +111,7 @@ body {
 
     color: white;
 
-    z-index: 150;
+    z-index: 400;
 
     display: none;
 }
@@ -185,6 +181,7 @@ body {
 /* ================= MODAL ================= */
 
 .modal {
+
     position: fixed;
 
     top: 0;
@@ -195,26 +192,26 @@ body {
 
     display: none;
 
-    justify-content: center;
-    align-items: center;
-
-    background: rgba(0, 0, 0, 0.7);
-
     z-index: 200;
+
+    pointer-events: none;
 }
 
 .modal-content {
+
+    position: fixed;
+    top: 300px;
+    right: 20px;
     width: 320px;
-
-    background: white;
-
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(10px);
     padding: 20px;
-
-    border-radius: 15px;
-
+    border-radius: 20px;
     text-align: center;
-
-    position: relative;
+    color: white;
+    z-index: 300;
+    overflow-y: auto;
+    max-height: 80vh;
 }
 
 .close {
