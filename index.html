@@ -2,66 +2,87 @@
 <html lang="es">
 
 <head>
+
     <meta charset="UTF-8" />
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    />
 
     <title>Solar RA</title>
+
 </head>
 
 <body>
 
-    <!-- CANVAS -->
+    <!-- ================= CANVAS ================= -->
+
     <canvas id="renderCanvas"></canvas>
 
-    <!-- CONTROLES -->
+    <!-- ================= CONTROLES ================= -->
 
     <div class="controls">
 
-  <button id="minusBtn">-</button>
+        <button id="minusBtn">
+            -
+        </button>
 
-  <span id="speedValue">1.0x</span>
+        <span id="speedValue">
+            1.0x
+        </span>
+        <button id="plusBtn">
+            +
+        </button>
+        <button id="resetBtn">
+            Reiniciar
+        </button>
 
-  <button id="plusBtn">+</button>
+    </div>
 
-</div>
+    <!-- ================= PLANET EDITOR ================= -->
 
-<div id="planetEditor" class="planet-editor">
-
-  <h2 id="editorPlanetName">
-    Planet
-  </h2>
-
-  <div class="editor-group">
-
-    <label>Masa</label>
-
-    <input
-      type="range"
-      id="planetMass"
-      min="1"
-      max="3000"
-      value="1"
+    <div
+        id="planetEditor"
+        class="planet-editor"
     >
 
-    <span id="planetMassValue">
-      1
-    </span>
+        <h2 id="editorPlanetName">
+            Planet
+        </h2>
 
-  </div>
+        <div class="editor-group">
 
-</div>
+            <label>
+                Masa
+            </label>
 
+            <input
+                type="range"
+                id="planetMass"
+                min="1"
+                max="3000"
+                value="1"
+            >
+            <span id="planetMassValue">
+                1
+            </span>
+        </div>
+    </div>
 
-    <!-- MODAL -->
-    <div id="planetModal"
-         class="modal">
+    <!-- ================= MODAL ================= -->
+
+    <div
+        id="planetModal"
+        class="modal"
+    >
 
         <div class="modal-content">
 
-            <span id="closeModal"
-                  class="close">
+            <span
+                id="closeModal"
+                class="close"
+            >
 
                 ×
 
@@ -69,23 +90,27 @@
 
             <div class="bg-image">
 
-                <img id="planetImage"
-                     src=""
-                     alt="Planet Image">
+                <img
+                    id="planetImage"
+                    src=""
+                    alt="Planet Image"
+                >
 
             </div>
 
             <h2 id="planetName"></h2>
-
             <p id="planetDescription"></p>
 
         </div>
 
     </div>
 
-    <!-- MAIN -->
-    <script type="module"
-            src="/src/main.js">
+    <!-- ================= MAIN ================= -->
+
+    <script
+        type="module"
+        src="/src/main.js"
+    >
     </script>
 
 </body>

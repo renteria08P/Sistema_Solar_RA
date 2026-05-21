@@ -15,7 +15,9 @@ body {
 }
 
 /* ================= CONTROLES ================= */
+
 .controls {
+
     position: absolute;
     right: 20px;
     top: 20px;
@@ -32,6 +34,7 @@ body {
 }
 
 .controls button {
+
     padding: 8px 15px;
     border: none;
     border-radius: 8px;
@@ -40,53 +43,21 @@ body {
 }
 
 #speedValue {
+
     color: white;
     font-size: 20px;
     font-weight: bold;
     display: inline-block;
-    transition: transform 0.15s ease, color 0.15s ease;
+    transition:
+        transform 0.15s ease,
+        color 0.15s ease;
 }
 
 /* efecto cuando cambia */
+
 #speedValue.active {
+
     transform: scale(1.4);
-    color: #00e5ff;
-}
-
-/* ================= MASS CONTROL ================= */
-
-.mass-control {
-    position: absolute;
-
-    top: 90px;
-    left: 50%;
-
-    transform: translateX(-50%);
-
-    width: 240px;
-
-    padding: 14px 18px;
-
-    border-radius: 14px;
-
-    background: rgba(0, 0, 0, 0.75);
-
-    color: white;
-
-    z-index: 100;
-
-    backdrop-filter: blur(8px);
-
-    border: 1px solid rgba(255,255,255,0.1);
-}
-
-.mass-control label {
-    display: block;
-
-    margin-bottom: 10px;
-
-    font-size: 14px;
-
     color: #00e5ff;
 }
 
@@ -95,25 +66,19 @@ body {
 .planet-editor {
 
     position: absolute;
-
     right: 20px;
-    top: 80px;
-
+    top: 100px;
     width: 260px;
-
+    min-height: auto;
+    overflow-y: auto;
     padding: 20px;
-
     border-radius: 16px;
-
     background: rgba(0,0,0,0.75);
-
     backdrop-filter: blur(10px);
-
     color: white;
-
-    z-index: 400;
-
+    z-index: 250;
     display: none;
+    border: 1px solid rgba(255,255,255,0.1);
 }
 
 .editor-group {
@@ -124,77 +89,55 @@ body {
 .editor-group label {
 
     display: block;
-
     margin-bottom: 10px;
+    font-size: 15px;
+    font-weight: bold;
 }
+
+/* ================= MASS ================= */
 
 #planetMass {
 
     width: 100%;
+    cursor: pointer;
 }
 
 #planetMassValue {
 
     display: block;
-
     margin-top: 10px;
-
     color: #00e5ff;
-
     font-weight: bold;
 }
 
-/* ================= SLIDER ================= */
+/* ================= SPEED ================= */
 
-#earthMass {
+#planetSpeed {
+
     width: 100%;
-
     cursor: pointer;
 }
 
-/* ================= IMAGEN PLANETA ================= */
+#planetSpeedValue {
 
-.bg-image {
-    width: 100%;
-
-    display: flex;
-
-    justify-content: center;
-
-    margin-bottom: 15px;
+    display: block;
+    margin-top: 10px;
+    color: #00e5ff;
+    font-weight: bold;
 }
 
-.bg-image img {
-
-    width: 160px;
-
-    height: 160px;
-
-    object-fit: cover;
-
-    border-radius: 15px;
-
-    border: 3px solid #ddd;
-
-    box-shadow: 0 0 15px rgba(0,0,0,0.3);
-}
 /* ================= MODAL ================= */
 
 .modal {
 
     position: fixed;
-
     top: 0;
     left: 0;
-
     width: 100%;
     height: 100%;
-
     display: none;
-
     z-index: 200;
-
-    pointer-events: none;
+    pointer-events: auto;
 }
 
 .modal-content {
@@ -212,17 +155,47 @@ body {
     z-index: 300;
     overflow-y: auto;
     max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    border: 1px solid rgba(255,255,255,0.1);
 }
 
-.close {
-    position: absolute;
+.modal-content h1,
+.modal-content p {
 
+    color: white;
+    margin: 0;
+}
+
+/* ================= CLOSE BUTTON ================= */
+
+.close {
+
+    position: absolute;
     top: 10px;
     right: 15px;
-
     font-size: 25px;
-
     cursor: pointer;
-
     color: red;
+}
+
+/* ================= PLANET IMAGE ================= */
+
+.bg-image {
+
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.bg-image img {
+
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 18px;
+    border: 3px solid #ddd;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
 }

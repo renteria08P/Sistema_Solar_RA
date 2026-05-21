@@ -1,31 +1,27 @@
-
 import * as BABYLON from "@babylonjs/core";
 
 import { planetData } from "./planetData";
 import { applyGravity } from "../physics/gravity";
 import { showPlanetModal } from "../ui/modal";
 
-export function createPlanets(
-  scene,
-  sun,
-  speedState
-) {
-
+export function createPlanets(scene, sun, speedState) {
   const planets = [];
 
   // ================= SUN BODY =================
+
   const sunBody = {
     mesh: sun,
 
     mass: 10000,
 
-    velocity:
-      new BABYLON.Vector3(0, 0, 0),
+    velocity: new BABYLON.Vector3(0, 0, 0),
   };
 
   // ================= CREATE PLANETS =================
+
   planetData.forEach((data) => {
     // PLANET MESH
+
     const planet = BABYLON.MeshBuilder.CreateSphere(
       data.name,
       {
@@ -34,21 +30,27 @@ export function createPlanets(
       scene,
     );
 
+    // MATERIAL
+
     const material = new BABYLON.StandardMaterial(
       data.name + "Material",
       scene,
     );
 
     material.diffuseColor = data.color;
+
     planet.material = material;
 
-    // INITIAL POSITION
+    // POSITION
+
     planet.position.x = data.distance;
 
-    // INITIAL SPEED
+    // SPEED
+
     const orbitalSpeed = data.speed;
 
     // PLANET OBJECT
+
     const planetObject = {
       mesh: planet,
 
@@ -67,7 +69,7 @@ export function createPlanets(
 
     planets.push(planetObject);
 
-    // ================= DRAG SYSTEM =================
+    // ================= DRAG =================
 
     const dragBehavior = new BABYLON.PointerDragBehavior({
       dragPlaneNormal: new BABYLON.Vector3(0, 1, 0),
@@ -75,17 +77,20 @@ export function createPlanets(
 
     planet.addBehavior(dragBehavior);
 
-    // INICIO DRAG
+    // START DRAG
+
     dragBehavior.onDragStartObservable.add(() => {
       planetObject.isDragging = true;
     });
 
-    // FIN DRAG
+    // END DRAG
+
     dragBehavior.onDragEndObservable.add(() => {
       planetObject.isDragging = false;
     });
 
-    // VELOCIDAD DE LANZAMIENTO
+    // THROW VELOCITY
+
     let lastPosition = planet.position.clone();
 
     dragBehavior.onDragObservable.add(() => {
@@ -99,6 +104,7 @@ export function createPlanets(
     });
 
     // ================= CLICK EVENT =================
+
     planet.actionManager = new BABYLON.ActionManager(scene);
 
     planet.actionManager.registerAction(
@@ -106,10 +112,10 @@ export function createPlanets(
         BABYLON.ActionManager.OnPickTrigger,
 
         () => {
-          // OPEN MODAL
+          // MODAL
           showPlanetModal(planetObject);
 
-          // OPEN EDITOR
+          // EDITOR
           window.dispatchEvent(
             new CustomEvent("planetSelected", {
               detail: planetObject,
@@ -118,9 +124,10 @@ export function createPlanets(
         },
       ),
     );
-    });
+  });
 
   // ================= MAIN LOOP =================
+
   scene.onBeforeRenderObservable.add(() => {
     const speed = speedState?.value ?? 1;
 
@@ -133,8 +140,7 @@ export function createPlanets(
     });
   });
 
-
   // ================= RETURN =================
-  return planets;
 
+  return planets;
 }

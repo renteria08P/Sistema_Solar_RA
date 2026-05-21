@@ -1,88 +1,63 @@
-export function setupControls(
-  speedState,
-  planets
-) {
-
+export function setupControls(speedState, planets) {
   // ================= BOTONES =================
-  const minusButton =
-    document.getElementById("minusBtn");
 
-  const plusButton =
-    document.getElementById("plusBtn");
+  const minusButton = document.getElementById("minusBtn");
 
-  const speedValue =
-    document.getElementById("speedValue");
+  const plusButton = document.getElementById("plusBtn");
 
-  // ================= SLIDER MASA =================
-  const earthMassSlider =
-    document.getElementById("earthMass");
+  const resetButton = document.getElementById("resetBtn");
 
-  // VALIDACIÓN
-  if (
-    !minusButton ||
-    !plusButton ||
-    !speedValue
-  ) return;
+  const speedValue = document.getElementById("speedValue");
 
-  // ================= BUSCAR TIERRA =================
-  const earth = planets.find(
-    (p) => p.name === "Earth"
-  );
+  // ================= VALIDACIÓN =================
+
+  if (!minusButton || !plusButton || !resetButton || !speedValue) {
+    console.error("No se encontraron controles UI");
+
+    return;
+  }
 
   // ================= UPDATE UI =================
+
   const updateUI = () => {
+    speedValue.innerText = speedState.value.toFixed(1) + "x";
 
-    speedValue.innerText =
-      speedState.value.toFixed(1) + "x";
+    // animación visual
 
-    // animación
     speedValue.classList.add("active");
 
     setTimeout(() => {
       speedValue.classList.remove("active");
     }, 150);
-
   };
 
   // ================= SPEED - =================
-  minusButton.onclick = () => {
 
-    speedState.value =
-      Math.max(
-        0.2,
-        speedState.value - 0.2
-      );
+  minusButton.onclick = () => {
+    speedState.value = Math.max(0.2, speedState.value - 0.2);
 
     updateUI();
 
+    console.log("Velocidad:", speedState.value);
   };
 
   // ================= SPEED + =================
-  plusButton.onclick = () => {
 
-    speedState.value += 0.2;
+  plusButton.onclick = () => {
+    speedState.value = Math.min(10, speedState.value + 0.2);
 
     updateUI();
 
+    console.log("Velocidad:", speedState.value);
   };
 
-  // ================= MASS CONTROL =================
-  if (earthMassSlider && earth) {
+  // ================= RESET =================
 
-    earthMassSlider.oninput = () => {
+  resetButton.onclick = () => {
+    location.reload();
+  };
 
-      earth.mass =
-        Number(earthMassSlider.value);
+  // ================= INIT =================
 
-      console.log(
-        "Nueva masa Tierra:",
-        earth.mass
-      );
-
-    };
-
-  }
-
-  // INIT UI
   updateUI();
 }

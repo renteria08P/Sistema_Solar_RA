@@ -1,25 +1,19 @@
 let selectedPlanet = null;
 
 export function setupPlanetEditor() {
-
   // ================= ELEMENTOS =================
 
-  const panel =
-    document.getElementById("planetEditor");
+  const panel = document.getElementById("planetEditor");
 
-  const planetTitle =
-    document.getElementById("editorPlanetName");
+  const planetTitle = document.getElementById("editorPlanetName");
 
-  const massSlider =
-    document.getElementById("planetMass");
+  const massSlider = document.getElementById("planetMass");
 
-  const massValue =
-    document.getElementById("planetMassValue");
+  const massValue = document.getElementById("planetMassValue");
 
   // ================= FUNCIÓN =================
 
   const updateEditor = (planet) => {
-
     if (!planet) return;
 
     selectedPlanet = planet;
@@ -28,36 +22,27 @@ export function setupPlanetEditor() {
     panel.style.display = "block";
 
     // nombre
-    planetTitle.innerText =
-      planet.name;
+    planetTitle.innerText = planet.name;
 
-    // slider
-    massSlider.value =
-      planet.mass;
+    // MASS
+    massSlider.value = planet.mass;
 
-    massValue.innerText =
-      planet.mass.toFixed(2);
-
+    massValue.innerText = planet.mass.toFixed(2);
   };
 
-  // ================= SLIDER EVENT =================
+  // ================= MASS EVENT =================
 
   massSlider.oninput = () => {
-
     if (!selectedPlanet) return;
 
-    selectedPlanet.mass =
-      Number(massSlider.value);
+    selectedPlanet.mass = Number(massSlider.value);
 
-    massValue.innerText =
-      selectedPlanet.mass.toFixed(2);
-
+    massValue.innerText = selectedPlanet.mass.toFixed(2);
   };
 
   // ================= RETURN =================
 
   return {
-    updateEditor
+    updateEditor,
   };
-
 }
